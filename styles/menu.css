@@ -18,13 +18,23 @@ main {
     width: 20rem;
     height: 4rem;
     border: #c72b2b 2px dotted;
+    transition: 0.3s;
+}
+.menu:hover {
+    height: 16rem;
 }
 .closed {
     overflow-y: hidden;
 }
+.menu-options-container {
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
 .menu-option {
     transition: 0.2s;
     border-radius: 0px;
+    margin: 0.9rem 0px;
 }
 .menu-option:hover {
     cursor: pointer;
