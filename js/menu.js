@@ -11,6 +11,7 @@ for (let option of optionsContainer.children){
 }
 
 let selectedOptionIndex = findIndex(document.querySelector('.selected'));
+changeOptionDisplay();
 
 function onMenuHover(e){
     if(e.target.classList.contains('menu')){
@@ -19,14 +20,20 @@ function onMenuHover(e){
     }
 }
 function onMenuClose(e){
-    if(e.target.classList.contains('menu')){
-        let actualMargin = optionsContainer.style.marginTop;
-        optionsContainer.style.marginTop = `${9 - 9*selectedOptionIndex}rem`;    
+    if(e.target.classList.contains('menu') ){
+        changeOptionDisplay(); 
     }
     e.stopPropagation();
 }
+function changeOptionDisplay(){
+    optionsContainer.style.marginTop = `${9 - 9*selectedOptionIndex}rem`;   
+}
 function toggleSelected(e){
+    for(let option of options){
+        option.classList.remove('selected');
+    }
     selectedOptionIndex = findIndex(e.target);
+    e.target.classList.add('selected');
 }
 function findIndex(element){
     return options.findIndex(e =>{
