@@ -35,7 +35,7 @@ function changeOptionDisplay(){
     optionsContainer.style.marginTop = `${9 - 9*selectedOptionIndex}rem`;   
 }
 function toggleMenuState(e){
-    if(e.target.classList.contains('menu') ){
+    if(e.target.classList.contains('menu')|| !isOpen){
         if(isOpen){
             closeMenu(e);
         }else{
