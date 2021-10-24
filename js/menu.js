@@ -1,4 +1,5 @@
 let options = [];
+let body = document.querySelector('body');
 let menu = document.querySelector('.menu');
 let optionsContainer = menu.querySelector('.menu-options-container');
 let isOpen = false;
@@ -10,12 +11,14 @@ for (let option of optionsContainer.children){
 let selectedOptionIndex = findIndex(document.querySelector('.selected'));
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    body.addEventListener('click', closeMenu);
     menu.addEventListener('click', toggleMenuState);
 }else{
     menu.addEventListener('mouseenter', onMenuHover);
     menu.addEventListener('mouseleave', onMenuClose);
+    changeOptionDisplay();
 }
-changeOptionDisplay();
+
 function onMenuHover(e){
     if(e.target.classList.contains('menu')){
         optionsContainer.style.marginTop = '0rem';
@@ -34,12 +37,10 @@ function changeOptionDisplay(){
 function toggleMenuState(e){
     if(e.target.classList.contains('menu') ){
         if(isOpen){
-            e.target.style.height = '4rem';
-            isOpen = false;
-            changeOptionDisplay();
+            closeMenu(e);
         }else{
             optionsContainer.style.marginTop = '0rem';
-            e.target.style.height = '16rem';
+            menu.style.height = '16rem';
             isOpen = true;
         }
     }
@@ -56,4 +57,11 @@ function findIndex(element){
     return options.findIndex(e =>{
         return e === element;
     })
+}
+function closeMenu(e){
+    if(isOpen){
+        menu.style.height = '4rem';
+        isOpen = false;
+        changeOptionDisplay();
+    }
 }
